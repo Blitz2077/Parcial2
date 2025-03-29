@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function mostrarProductos(productos) {
+        // Limpiar contenedor
         while (contenedorProductos.firstChild) {
             contenedorProductos.removeChild(contenedorProductos.firstChild);
         }
@@ -35,7 +36,11 @@ document.addEventListener('DOMContentLoaded', function () {
         if (productos.length === 0) {
             const mensaje = document.createElement('div');
             mensaje.className = 'col-12';
-            mensaje.innerHTML = '<p>No tienes productos registrados</p>';
+            
+            const parrafo = document.createElement('p');
+            parrafo.textContent = 'No tienes productos registrados';
+            
+            mensaje.appendChild(parrafo);
             contenedorProductos.appendChild(mensaje);
             return;
         }
@@ -65,14 +70,31 @@ document.addEventListener('DOMContentLoaded', function () {
         descripcion.className = 'card-text';
         descripcion.textContent = producto.descripcion || 'Sin descripción';
 
-        const precio = document.createElement('p');
-        precio.className = 'card-text';
-        precio.innerHTML = `<strong>Precio:</strong> $${producto.precio.toFixed(2)}`;
+        // Crear elementos para precio
+        const precioContainer = document.createElement('p');
+        precioContainer.className = 'card-text';
+        
+        const precioLabel = document.createElement('strong');
+        precioLabel.textContent = 'Precio: ';
+        
+        const precioValor = document.createTextNode(` $${producto.precio.toFixed(2)}`);
+        
+        precioContainer.appendChild(precioLabel);
+        precioContainer.appendChild(precioValor);
 
-        const stock = document.createElement('p');
-        stock.className = 'card-text';
-        stock.innerHTML = `<strong>Stock:</strong> ${producto.cantidad}`;
+        // Crear elementos para stock
+        const stockContainer = document.createElement('p');
+        stockContainer.className = 'card-text';
+        
+        const stockLabel = document.createElement('strong');
+        stockLabel.textContent = 'Stock: ';
+        
+        const stockValor = document.createTextNode(` ${producto.cantidad}`);
+        
+        stockContainer.appendChild(stockLabel);
+        stockContainer.appendChild(stockValor);
 
+        // Botones
         const btnEditar = document.createElement('button');
         btnEditar.className = 'btn btn-primary btn-editar';
         btnEditar.textContent = 'Editar';
@@ -83,10 +105,11 @@ document.addEventListener('DOMContentLoaded', function () {
         btnEliminar.textContent = 'Eliminar';
         btnEliminar.dataset.id = producto.id;
 
+        // Construir la card
         cardBody.appendChild(titulo);
         cardBody.appendChild(descripcion);
-        cardBody.appendChild(precio);
-        cardBody.appendChild(stock);
+        cardBody.appendChild(precioContainer);
+        cardBody.appendChild(stockContainer);
         cardBody.appendChild(btnEditar);
         cardBody.appendChild(btnEliminar);
 
@@ -213,6 +236,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function mostrarMensaje(texto, tipo) {
+        // Limpiar mensaje anterior
+        while (mensajeDiv.firstChild) {
+            mensajeDiv.removeChild(mensajeDiv.firstChild);
+        }
+        
         mensajeDiv.textContent = texto;
         mensajeDiv.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'}`;
         mensajeDiv.style.display = 'block';
