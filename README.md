@@ -6,5 +6,5 @@ flask-cors
 flask-sqlalchemy
 pyjwt
 mysqlclient
-si pip install nombre_libreria no funciona con venv en la carpeta, borre venv, porque la gracia de venv era que no tuviese que descargar las librerias una por una.
+si pip install nombre_libreria no funciona con la carpeta venv dentro la carpeta del proyecto, borre venv, porque la gracia de venv era que no tuviese que descargar las librerias una por una.
 y una vez borrado venv, toca instalar una por una :(
