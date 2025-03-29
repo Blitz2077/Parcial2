@@ -8,3 +8,10 @@ pyjwt
 mysqlclient
 si pip install nombre_libreria no funciona con la carpeta venv dentro la carpeta del proyecto, borre venv, porque la gracia de venv era que no tuviese que descargar las librerias una por una.
 y una vez borrado venv, toca instalar una por una :(
+Estos son los comandos:
+
+pip install flask
+pip install flask-cors
+pip install flask-sqlalchemy
+pip install pyjwt o pip install jwt
+pip install mysqlclient
